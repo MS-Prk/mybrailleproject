@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Start Screen</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      padding-bottom: 60px; /* 하단 네비게이션 공간 확보 */
+    }
+
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 10px;
+    }
+
+    .section {
+      background-color: #e9ecef;
+      margin: 10px 0;
+      border-radius: 8px;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .section-title {
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 8px 8px 0 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .section-content {
+      padding: 50px 20px 20px;
+      margin-top: 40px;
+    }
+
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    /* ✅ 고정 하단 바 스타일 */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background-color: #d9d9d9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-top: 1px solid #aaa;
+      z-index: 100;
+      cursor: pointer;
+    }
+
+    .home-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    /* 모바일 대응 */
+    @media (max-width: 576px) {
+      .section {
+        margin: 8px 0;
+      }
+      .section-title {
+        font-size: 1rem;
+        padding: 8px;
+      }
+      .section-content {
+        padding: 40px 15px 15px;
+        margin-top: 35px;
+      }
+      .home-icon {
+        width: 28px;
+        height: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Content Section -->
+  <div class="content">
+    <!-- Image Section -->
+    <div class="section image-container">
+      <div class="section-title">Captured Image</div>
+      <div class="section-content">
+        <img src="{{ url_for('static', filename='images/' + image) }}?t={{ image_timestamp }}" alt="Captured Image">
+      </div>
+    </div>
+
+    <!-- Recognized Text Section -->
+    <div class="section">
+      <div class="section-title">Text</div>
+      <div class="section-content">
+        {% if warning %}
+            <p style="color: red;">⚠ {{ warning }}</p>
+        {% endif %}
+        <p>{{ recognized_text }}</p>
+      </div>
+    </div>
+
+    <!-- Converted Braille Section -->
+    <div class="section">
+        <div class="section-title">Converted Braille</div>
+        <div class="section-content">
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            {% for cell in braille_dots %}
+            <div class="d-flex flex-column gap-1">
+                {% for row in cell %}
+                <div>
+                    {% for dot in row %}
+                    <span style="font-size: 1.5rem;">{{ '●' if dot else '○' }}</span>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- ✅ Bottom Navigation Bar -->
+  <div class="bottom-bar" id="home-bar">
+    <img src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="Home" class="home-icon">
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <script>
+    // 하단 바 클릭 시 홈으로 이동
+    document.getElementById('home-bar').addEventListener('click', () => {
+      window.location.href = "{{ url_for('home') }}";
+    });
+  </script>
+</body>
+</html>

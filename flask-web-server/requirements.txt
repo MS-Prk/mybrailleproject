@@ -1,0 +1,9 @@
+Flask==2.2.2
+opencv-python==4.5.5.64
+google-cloud-vision==2.7.1
+torch==1.12.1
+torchvision==0.13.1
+numpy==1.21.6
+Pillow==9.1.1
+flask-cors==3.0.10
+google-cloud-translate==3.8.2

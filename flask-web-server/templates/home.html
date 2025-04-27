@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flask App Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+    .btn {
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      padding: 15px;
+    }
+
+    /* ✅ connection status 텍스트 박스 스타일 */
+    .status-box {
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      padding: 15px;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+    }
+    .status-connected {
+      background-color: #28a745; /* Green */
+      color: black;
+    }
+    .status-connecting {
+      background-color: #ffc107; /* Yellow */
+      color: black;
+    }
+    .status-disconnected {
+      background-color: #dc3545; /* Red */
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ✅ Connection Status 텍스트 박스 -->
+    <div class="status-box
+      {% if connection_status == 'Connected' %}
+        status-connected
+      {% elif connection_status == 'Connecting...' %}
+        status-connecting
+      {% else %}
+        status-disconnected
+      {% endif %}">
+      {{ connection_status }}
+    </div>
+
+    <!-- Start Button -->
+    <a href="{{ url_for('start') }}" class="btn btn-primary w-100">Start</a>
+
+    <!-- Speed Setting Button -->
+    <a href="{{ url_for('speed_setting') }}" class="btn btn-secondary w-100">Speed Setting</a>
+
+    <!-- Translation Setting Button -->
+    <a href="{{ url_for('language_setting') }}" class="btn btn-info w-100">Language Setting</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

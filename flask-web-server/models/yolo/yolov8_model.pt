@@ -1,0 +1,3 @@
+The file /flask-web-server/flask-web-server/models/yolo/yolov8_model.pt is a binary file that contains the pre-trained YOLOv8 model weights. As such, it cannot be represented as text. You will need to obtain the YOLOv8 model file from the official repository or training process and place it in the specified directory.
+
+Please ensure you have the model file ready and place it in the /flask-web-server/flask-web-server/models/yolo/ directory.

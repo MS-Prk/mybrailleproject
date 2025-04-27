@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ESP32-CAM Upload Test</title>
+</head>
+<body>
+    <h1>ESP32-CAM에서 업로드된 최신 이미지</h1>
+    <img src="{{ url_for('static', filename='images/' + image) }}" width="400" alt="No image yet">
+</body>
+</html>
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Sign Detection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #ccc;
+            margin-top: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Traffic Sign Detection</h1>
+    <h2>Most Recent Image</h2>
+    <img src="{{ url_for('static', filename='images/recent.jpg') }}" alt="Recent Image">
+    <div class="result">
+        <h3>Detected Sign:</h3>
+        <p id="detected-sign">Waiting for detection...</p>
+    </div>
+    <script>
+        // This script can be used to update the detected sign dynamically if needed
+        // For now, it will just display a static message
+    </script>
+</body>
+</html>
+-->
